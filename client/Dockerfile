@@ -10,4 +10,4 @@ FROM nginx:1.27-alpine
 # Copy built files
 COPY --from=build /app/dist /usr/share/nginx/html
 # Copy our nginx config 
-COPY ./app.conf /etc/nginx/conf.d/default.conf
+COPY client/app.conf /etc/nginx/conf.d/default.conf
