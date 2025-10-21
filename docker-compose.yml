@@ -8,7 +8,7 @@ services:
   nginx:
     build:
       context: ./client
-      dockerfile: Dockerfile
+    file: ./client/Dockerfile
     image: app-frontend:latest
     ports: ["80:80"]
     depends_on: [backend]
