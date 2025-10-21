@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useProjectSSE } from "../hooks/useProjectSSE";
 import { useGetProjectsQuery } from "../app/api/projectApi";
 import { useRealtime } from "../hooks/useRealtime";
 import { FiltersBar } from "../components/FiltersBar";
@@ -12,6 +14,9 @@ import { Grid, Pager, PageInfo } from "../assets/styles/theme";
 const PAGE_SIZE = 9;
 
 export const Dashboard = () => {
+  const dispatch = useDispatch();
+  useProjectSSE(dispatch);
+
   const [filters, setFilters] = useState<Record<string, any>>({});
   const [page, setPage] = useState(1);
   const [ordering, setOrdering] = useState<string>("-last_updated"); // default: newest first
