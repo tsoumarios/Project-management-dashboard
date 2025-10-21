@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./server
+    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    volumes:
+      - ./server:/app
+
+  nginx:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: app-frontend:latest
+    ports: ["80:80"]
+    depends_on: [backend]
+    volumes:
+      - ./deploy/nginx/app.conf:/etc/nginx/conf.d/default.conf:ro
