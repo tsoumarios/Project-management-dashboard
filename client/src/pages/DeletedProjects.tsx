@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useProjectSSE } from "../hooks/useProjectSSE";
 import {
   useGetDeletedProjectsQuery,
   useBulkRecoverProjectsMutation,
@@ -9,6 +11,8 @@ import { ProjectCard } from "../components/ProjectCard";
 const PAGE_SIZE = 9;
 
 export const DeletedProjects = () => {
+  const dispatch = useDispatch();
+  useProjectSSE(dispatch);
   const [page, setPage] = useState(1);
   const query = useMemo(() => {
     const offset = (page - 1) * PAGE_SIZE;
