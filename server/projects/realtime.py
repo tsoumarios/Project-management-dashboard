@@ -1,4 +1,3 @@
-# projects/realtime.py
 import json
 import queue
 import threading
